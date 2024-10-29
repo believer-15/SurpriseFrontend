@@ -13,7 +13,9 @@ export default {
         merriweather: ['Merriweather', 'Helvetica', 'Arial','sans-serif'],
       },
       fontSize: {
-        'xl': '1rem',
+        'm': '1rem',
+        'l': '1.50rem',
+        'xl': '1.75rem',
         '4xl': '2.0rem',
       },
       fontWeight: {
