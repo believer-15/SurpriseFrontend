@@ -1,15 +1,13 @@
 
-
-
 function Gallery() {
     return (
         <>
-            <section>
+            <section className="flex items-center justify-center font-merriweather border-2">
                 <div>
-                    <h1>GALLERY</h1>
+                    <h1 className="text-xl font-bold tracking-[0.15em]">GALLERY</h1>
                 </div>
                 <div>
-                    <img src="" alt="" />
+                    
                 </div>
             </section>
         </>
