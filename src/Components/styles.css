@@ -2,6 +2,7 @@
   width: 50%;
   padding-top: 50px;
   padding-bottom: 50px;
+  /* border-radius: 50px; */
 }
 
 .swiper-slide {
@@ -13,4 +14,13 @@
 .swiper-slide img {
   display: block;
   width: 100%;
+}
+.swiper-button-prev {
+  background: none;
+}
+.swiper-button-next {
+  background: none;
+}
+.swiper-pagination {
+  background: none;
 }

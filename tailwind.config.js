@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -8,6 +9,7 @@ export default {
     extend: {
       colors: {
         backgroundColor: '#8BB5C9',
+        contactColor: '#837B7B',
       },
       fontFamily: {
         merriweather: ['Merriweather', 'Helvetica', 'Arial','sans-serif'],
