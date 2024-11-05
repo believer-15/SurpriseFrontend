@@ -4,7 +4,7 @@ import Hero from './Components/Hero.jsx';
 import Services from './Components/Services.jsx';
 import Gallery from './Components/Gallery.jsx';
 import Contact from './Components/Contact.jsx';
-// import Footer from './Components/Footer.jsx';
+import Footer from './Components/Footer.jsx';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Services></Services>
       <Gallery></Gallery>
       <Contact></Contact>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </>
   )
 }
