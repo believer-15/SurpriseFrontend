@@ -3,7 +3,7 @@ import hero from '../assets/heroImg.png';
 function Hero() {
     return (
         <>
-            <section className='flex items-center justify-around font-merriweather'>
+            <section className='flex items-center justify-around font-merriweather border-2'>
                 <div className=''>
                     <p className='text-4xl font-bold tracking-[5px]'>
                         <span className='block'>FLAWLESS LOOK</span> 

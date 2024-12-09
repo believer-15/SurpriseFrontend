@@ -17,8 +17,8 @@ function Footer() {
                     <div className="flex flex-col items-center justify-center gap-3 bg-[#000]">
                         <h1 className="bg-[#000] text-l text-center tracking-[0.10em] font-bold">Contact Us</h1>
                         <ul className="flex flex-col items-center justify-center gap-4 bg-[#000]">
-                            <li className="bg-[#000]">123, Janta Market</li>
-                            <li className="bg-[#000]">Kaptanganj, Kushinagar</li>
+                            <li className="bg-[#000]">123, Xyzae erdnem</li>
+                            <li className="bg-[#000]">asdfghjklt, qasdfghjkl</li>
                             <li className="bg-[#000]">India, 274301</li>
                             <li className="bg-[#000]">Info@surprise.com</li>
                         </ul>
