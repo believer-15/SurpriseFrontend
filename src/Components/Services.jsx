@@ -3,9 +3,9 @@
 function Services() {
     return (
         <>
-            <section className="font-merriweather">
+            <section className="sm:max-w-6xl mx-auto font-merriweather border-2">
                 <div className="flex items-center justify-center mt-5">
-                    <h1 className="text-sm sm:text-xl font-bold tracking-[0.15em]">OUR SERVICES</h1>
+                    <h1 className="text-xl font-bold tracking-[0.15em]">OUR SERVICES</h1>
                     {/* <Line width={100} height={100}></Line> */}
                 </div>
                 <div className="flex flex-col items-center mx-auto sm:justify-around sm:max-w-6xl sm:flex-row sm:mt-5">

@@ -9,8 +9,8 @@ function Navbar() {
     }
     return (
         <>
-            <nav className="flex items-center justify-around h-18 text-[#161d15] font-merriweather">
-                <div className="block md:hidden">
+            <nav className="sm:max-w-6xl sm:mx-auto flex flex-wrap items-center justify-between h-18 text-[#161d15] font-merriweather">
+                <div className="block sm:hidden ml-6">
                     <button onClick={() => setIsOpen(!isOpen)}>
                         <svg
                             className="w-8 h-8 cursor-pointer"
@@ -23,7 +23,7 @@ function Navbar() {
                         </svg>
                     </button>    
                 </div>
-                <div className="flex items-center justify-center sm: mr-[70px]">
+                <div className="flex items-center justify-center sm:mr-0 mr-[4.375rem]">
                     <img src={Logo} alt="Logo" className="w-21 h-20" />
                     <p className="text-l font-bold tracking-[0.25em]">SURPRISE</p>
                 </div>

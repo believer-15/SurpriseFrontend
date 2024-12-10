@@ -14,12 +14,11 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 function Gallery() {
   return (
     <> 
-      <section className='flex items-center justify-around font-merriweather border-2'>
+      <section className='flex flex-col items-center justify-around font-merriweather border-2'>
         <div>
-                <h1 className="text-xl font-bold tracking-[0.15em]">GALLERY</h1>
+                <h1 className="text-lg sm:text-xl font-bold tracking-[0.15em]">GALLERY</h1>
         </div>
-      </section>
-      <Swiper
+        <Swiper
         spaceBetween={0}
         centeredSlides={true}
         autoplay={{
@@ -60,7 +59,8 @@ function Gallery() {
         <SwiperSlide>          
                 <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
         </SwiperSlide>
-      </Swiper>
+        </Swiper>
+      </section>  
     </>
   );
 }
