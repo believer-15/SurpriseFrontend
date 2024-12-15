@@ -18,7 +18,7 @@ function Contact() {
 
     return(
         <>
-            <section className="sm:max-w-6xl flex flex-col justify-center mx-auto font-merriweather bg-contactColor">
+            <section className="sm:max-w-6xl flex flex-col justify-center mx-auto font-merriweather bg-contactColor mt-0 sm:mt-10">
                 <div className="flex items-center justify-center bg-contactColor">
                     <h1 className="text-xl font-bold tracking-[0.15em] bg-contactColor">CONTACT US</h1>
                 </div>

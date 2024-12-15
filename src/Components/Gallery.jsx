@@ -14,7 +14,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 function Gallery() {
   return (
     <> 
-      <section className='flex flex-col items-center justify-around font-merriweather border-2'>
+      <section className='flex flex-col items-center justify-around font-merriweather mt-0 sm:mt-10'>
         <div>
                 <h1 className="text-lg sm:text-xl font-bold tracking-[0.15em]">GALLERY</h1>
         </div>
