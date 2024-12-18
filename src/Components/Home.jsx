@@ -1,9 +1,21 @@
 import hero from '../assets/heroImg.png';
+import Layout from '../Layout/Layout';
+import Services from '../Components/Services';
+import Gallery from '../Components/Gallery';
+import Contact from '../Components/Contact';
+import { useScroll } from '../States/State';
 
-function Hero() {
+function Home() {
+
+    const { sectionRef } = useScroll();
     return (
-        <>
-            <section className='sm:max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between font-merriweather'>
+        <>  
+            <Layout>
+            {/* Hero Section */}
+            <section className='sm:max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between font-merriweather' 
+                ref={(el) => (sectionRef.current['home'] = el)}  
+                id='home'
+                >
                 <div className='flex flex-col sm:gap-3 gap-4'>
                     <p className='flex flex-col gap-4 text-center sm:text-left sm:gap-4 text-4xl sm:text-4xl font-bold tracking-[0.3125rem]'>
                         <span className='block'>FLAWLESS LOOK</span> 
@@ -27,9 +39,12 @@ function Hero() {
                     <img src={hero} alt="girl_image" className='w-[23rem] h-[33.125rem]' />
                 </div>
             </section>
-
+            <Services></Services>
+            <Gallery></Gallery>
+            <Contact></Contact>
+            </Layout>
         </>
     );
 }
 
-export default Hero;
+export default Home;

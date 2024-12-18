@@ -1,20 +1,15 @@
 import './App.css'
-import Navbar from './Components/Navbar.jsx';
-import Hero from './Components/Hero.jsx';
-import Services from './Components/Services.jsx';
-import Gallery from './Components/Gallery.jsx';
-import Contact from './Components/Contact.jsx';
-import Footer from './Components/Footer.jsx';
+import Home from './Components/Home.jsx';
+import { ScrollProvider } from './States/State.jsx';
 
 function App() {
   return (
     <>
-      <Navbar></Navbar>
-      <Hero></Hero>
-      <Services></Services>
-      <Gallery></Gallery>
-      <Contact></Contact>
-      <Footer></Footer>
+
+      <ScrollProvider>
+        <Home></Home>
+      </ScrollProvider>
+      
     </>
   )
 }

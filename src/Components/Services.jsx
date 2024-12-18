@@ -1,9 +1,16 @@
 // import { Line } from '../assets/Line.svg';
 
+import { useScroll } from "../States/State";
+
 function Services() {
+    const { sectionRef } = useScroll();
+
     return (
         <>
-            <section className="sm:max-w-6xl mx-auto font-merriweather border-2">
+            <section className="sm:max-w-6xl mx-auto font-merriweather" 
+            id="services" 
+            ref={(el) => (sectionRef.current['services'] = el)}  
+            >
                 <div className="flex items-center justify-center mt-5">
                     <h1 className="text-xl font-bold tracking-[0.15em]">OUR SERVICES</h1>
                     {/* <Line width={100} height={100}></Line> */}

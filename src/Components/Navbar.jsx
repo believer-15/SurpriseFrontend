@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import Logo from '..//assets/Logo.png';
+import { useScroll } from '../States/State';
+
+// import { NavLink } from 'react-router';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -7,6 +10,14 @@ function Navbar() {
     const closeSidebar = () => {
         setIsOpen(!isOpen);
     }
+    const { scrollToSection } = useScroll();
+    // const handleClick = () => {
+    //     scrollToSection();
+    //     console.log("Hitting Handle Click");
+    // }
+
+    
+
     return (
         <>
             <nav className="sm:max-w-6xl sm:mx-auto flex flex-wrap items-center justify-between h-18 text-[#161d15] font-merriweather">
@@ -30,16 +41,16 @@ function Navbar() {
                 <div className='hidden md:block'>
                     <ul className='flex gap-20 font-normal text-m tracking-[0.1875em]'>
                         <li className="">
-                            <p>Home</p>
+                            <button onClick={() => scrollToSection('home')}>Home</button>
                         </li>
                         <li className="">
-                            <p>Services</p>
+                            <button onClick={() => scrollToSection('services')}>Services</button>
                         </li>
                         <li className="">
-                            <p>Gallery</p>
+                            <button onClick={() => scrollToSection('gallery')}>Gallery</button>
                         </li>
                         <li className="">
-                            <p>Contact</p>
+                            <button onClick={() => scrollToSection('contact')}>Contact</button>
                         </li>
                     </ul>
                 </div>  
