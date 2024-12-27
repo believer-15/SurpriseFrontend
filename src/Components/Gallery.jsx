@@ -33,7 +33,7 @@ function Gallery() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className="mySwiper border-2"
       >
         <SwiperSlide>
                 <img src="https://swiperjs.com/demos/images/nature-1.jpg" />

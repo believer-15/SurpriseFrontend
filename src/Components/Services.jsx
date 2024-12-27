@@ -1,5 +1,7 @@
-// import { Line } from '../assets/Line.svg';
-
+import skincare  from '../assets/skinCare.png';
+import bodycare from '../assets/bodyCare.jpg';
+import haircare from '../assets/hairCare.jpg';
+import makeup from '../assets/makeup.jpg';
 import { useScroll } from "../States/State";
 
 function Services() {
@@ -17,19 +19,27 @@ function Services() {
                 </div>
                 <div className="flex flex-col items-center mx-auto sm:justify-around sm:max-w-6xl sm:flex-row sm:mt-5">
                     <div className="pt-5">
-                        <div className="w-[13rem] h-[13rem] border-2 rounded-full"></div>
+                        <div className="w-[13rem] h-[13rem] border-2 rounded-full overflow-hidden">
+                            <img className="w-[13rem] h-[13rem] object-cover" src={skincare} alt="" />
+                        </div>
                         <p className="text-center mt-4">Skin Care</p>
                     </div>
                     <div className="pt-5">
-                        <div className="w-[13rem] h-[13rem] border-2 rounded-full"></div>
+                        <div className="w-[13rem] h-[13rem] border-2 rounded-full overflow-hidden">
+                            <img className="w-[13rem] h-[13rem] object-cover" src={haircare} alt="" />
+                        </div>
                         <p className="text-center mt-4">Hair Care</p>
                     </div>
                     <div className="pt-5">
-                        <div className="w-[13rem] h-[13rem] border-2 rounded-full"></div>
+                        <div className="w-[13rem] h-[13rem] border-2 rounded-full overflow-hidden">
+                            <img className="w-[13rem] h-[13rem] object-cover" src={bodycare} alt="" />
+                        </div>
                         <p className="text-center mt-4">Body Care</p>
                     </div>
                     <div className="pt-5">
-                        <div className="w-[13rem] h-[13rem] border-2 rounded-full"></div>
+                        <div className="w-[13rem] h-[13rem] border-2 rounded-full overflow-hidden">
+                            <img className="w-[13rem] h-[13rem] object-cover" src={makeup} alt="" />
+                        </div>
                         <p className="text-center mt-4">Makeup</p>
                     </div>
                 </div>

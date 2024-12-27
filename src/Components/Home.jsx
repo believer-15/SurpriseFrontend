@@ -17,7 +17,7 @@ function Home() {
                 id='home'
                 >
                 <div className='flex flex-col sm:gap-3 gap-4'>
-                    <p className='flex flex-col gap-4 text-center sm:text-left sm:gap-4 text-4xl sm:text-4xl font-bold tracking-[0.3125rem]'>
+                    <p className='flex flex-col gap-4 text-center sm:text-left sm:gap-2 text-4xl sm:text-4xl font-bold tracking-[0.3125rem]'>
                         <span className='block'>FLAWLESS LOOK</span> 
                         <span className='block'>FOR</span> 
                         <span className='block'>FLAWLESS MOMENT</span>
