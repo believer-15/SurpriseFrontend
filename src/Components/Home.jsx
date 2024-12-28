@@ -12,6 +12,7 @@ function Home() {
         <>  
             <Layout>
             {/* Hero Section */}
+            {/* Shreya */}
             <section className='scroll-mt-[6rem] sm:max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between font-merriweather' 
                 ref={(el) => (sectionRef.current['home'] = el)}  
                 id='home'
