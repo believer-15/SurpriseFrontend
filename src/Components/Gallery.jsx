@@ -15,7 +15,7 @@ function Gallery() {
         const { sectionRef } = useScroll();
   return (
     <> 
-      <section className='flex flex-col items-center justify-around font-merriweather mt-0 sm:mt-10' 
+      <section className='scroll-mt-[6rem] flex flex-col items-center justify-around font-merriweather mt-0 sm:mt-10' 
       ref={(el) => (sectionRef.current['gallery'] = el)} 
       >
         <div className='mt-5'>

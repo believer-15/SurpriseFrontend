@@ -15,7 +15,7 @@ function Contact() {
 
     return(
         <>
-            <section className="font-merriweather bg-contactColor sm:mt-10" 
+            <section className="scroll-mt-[6rem] font-merriweather bg-contactColor sm:mt-10" 
             id="contact"
             ref={(el) => (sectionRef.current['contact'] = el)}
             >
