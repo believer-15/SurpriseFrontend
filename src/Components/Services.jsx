@@ -9,7 +9,7 @@ function Services() {
 
     return (
         <>
-            <section className="sm:max-w-6xl mx-auto font-merriweather" 
+            <section className="scroll-mt-[6rem] sm:max-w-6xl mx-auto font-merriweather" 
             id="services" 
             ref={(el) => (sectionRef.current['services'] = el)}  
             >
