@@ -1,16 +1,78 @@
 import { useState } from "react";
-
 import { useScroll } from "../States/State";
 
 function Contact() {
 
-    const [selectedOption, setSelectedOption] = useState('');
+    const crossIcon = '❌';
 
-    const handleSelectChange = (event) => {
-        setSelectedOption(event.target.value);
-    }
 
     const { sectionRef } = useScroll();
+
+    const [errors, setErrors] = useState({ name: [], email: [] });
+
+    const [formState, setFormState] = useState({
+        name: '',
+        email: '',
+        mobileNumber: '',
+        selectedOption: ''
+    });
+
+    // Don't Delete handleSelectChange
+
+    function handleSelectChange(e){
+        setFormState({
+            ...formState,
+            selectedOption: e.target.value
+        });
+    }
+
+    function handleUserInput(e){
+        const {name, value} = e.target;
+        setFormState({
+            ...formState,
+            [name]: value
+        });
+
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: [],
+        }));
+    }
+
+    function handleFormSubmit(e){
+        e.preventDefault();
+        console.log(formState);
+
+        if (validateField()) {
+            alert("Form submitted successfully!");
+            setFormState({ name: "", email: "" }); // Clear the form
+            setErrors({}); // Clear errors
+          }
+    }
+
+    const validateField = () => {
+        const newErrors = [];
+
+        // Validate name field
+        if (!formState.name.trim()) {
+            newErrors.name = `${crossIcon} Name is required.`;
+        } else if (formState.name.length < 3) {
+            newErrors.name = "Enter Valid Name";
+        }
+  
+        // Validate email field
+        if (!formState.email.trim()) {
+            newErrors.email = "Email is required.";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) {
+            newErrors.email = "Enter Valid Email";
+        }
+  
+        setErrors(newErrors);
+  
+        // Return true if there are no errors
+        return Object.keys(newErrors).length === 0;
+    };
+
 
 
     return(
@@ -40,18 +102,54 @@ function Contact() {
                                 <p className="bg-[#D9D9D9]">BOOK YOUR APPOINTMENT</p>
                             </div>
                             <div className="flex flex-col items-start bg-[#D9D9D9]">
-                                <input type="text" name="name" placeholder="Name" className="bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
+                                <input 
+                                    type="text" 
+                                    name="name"
+                                    required
+                                    value={formState.name}
+                                    onChange={handleUserInput}
+                                    placeholder="Name" 
+                                    className="bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
+                                    {/* Display Error for Name */}
+                                    {errors.email && (
+    <span className="text-xs text-red-700 flex items-center">
+        {errors.name}
+    </span>
+)}
+                                    {/* {errors.name && (
+                                        <span className="text-xs text-red-700">&#x274C{errors.name}</span>
+                                    )} */}
+                                <br/>
+                                <input 
+                                    type="email" 
+                                    name="email"
+                                    value={formState.email}
+                                    onChange={handleUserInput} 
+                                    placeholder="Email" 
+                                    className="bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
+                                    {/* Display Error for Email */}
+                                    {errors.email && (
+                                        <span className="text-xs text-red-700">
+                                            {errors.email}</span>
+                                    )}
+                                    {/* <img src={remove} alt="error-sign" className="w-3 h-3 object-cover" /> */}
                                 <br />
-                                <input type="email" name="email" placeholder="Email" className="bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
-                                <br />
-                                <input type="text" name="mobileNumber" placeholder="Mobile No." className="bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
+                                <input 
+                                    type="text" 
+                                    name="mobileNumber" 
+                                    value={formState.mobileNumber}
+                                    onChange={handleUserInput}
+                                    placeholder="Mobile No." 
+                                    className="bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
+                                    {<span className="text-red-700 text-xs"></span>}
                                 <br />
                                 <div className="w-full flex items-center border-b-[0.1rem] border-black bg-[#D9D9D9]">
-                                    <select className="bg-[#D9D9D9] focus:outline-none" 
-                                    value={selectedOption}
-                                    onChange={handleSelectChange}
+                                    <select className="bg-[#D9D9D9] focus:outline-none"
+                                    name="selectedOption" 
+                                    value={formState.selectedOption}
+                                    onChange={handleUserInput}
                                     >
-                                        {!selectedOption && <option value="Select an option">Select an Option</option>}
+                                        {!formState.selectedOption && <option value="Select an option">Select an Option</option>}
                                         <option value="Skin Care">Skin Care</option>
                                         <option value="Hair Care">Hair Care</option>
                                         <option value="Body Care">Body Care</option>
@@ -59,14 +157,13 @@ function Contact() {
                                     </select>
                                 </div>
                             </div>
-                            <div className="text-center bg-[#C7B1B1] w-[13.75rem] p-[0.625rem] ">
-                                <button 
+                            <button 
                                     type="button" 
-                                    name="submit" 
-                                    className="tracking-[0.25em]">
+                                    name="submit"
+                                    onClick={handleFormSubmit} 
+                                    className="tracking-[0.25em] text-center bg-[#C7B1B1] w-[13.75rem] p-[0.625rem]">
                                     SUBMIT
-                                </button>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
