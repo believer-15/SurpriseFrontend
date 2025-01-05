@@ -18,7 +18,7 @@ function Navbar() {
     };
 
     return (
-        <nav className="top-0 left-0 w-full z-[1000] sticky">
+        <nav className="top-0 left-0 w-full z-[1000] sticky bg-[#8bb5c9]">
             <div className="sm:mx-auto sm:max-w-6xl flex flex-wrap items-center justify-between h-18 text-[#161d15] font-merriweather">
                 <div className="block sm:hidden ml-6">
                     <button onClick={() => setIsOpen(!isOpen)}>
@@ -46,7 +46,7 @@ function Navbar() {
                                     activeSection === 'home' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
                                 }`}
                             >
-                                Home
+                            Home
                             </button>
                         </li>
                         <li>
@@ -56,7 +56,7 @@ function Navbar() {
                                     activeSection === 'services' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
                                 }`}
                             >
-                                Services
+                            Services
                             </button>
                         </li>
                         <li>
@@ -66,7 +66,7 @@ function Navbar() {
                                     activeSection === 'gallery' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
                                 }`}
                             >
-                                Gallery
+                            Gallery
                             </button>
                         </li>
                         <li>
@@ -76,7 +76,7 @@ function Navbar() {
                                     activeSection === 'contact' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
                                 }`}
                             >
-                                Contact
+                            Contact
                             </button>
                         </li>
                     </ul>
@@ -101,7 +101,7 @@ function Navbar() {
                                     activeSection === 'home' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
                                 }`}
                             >
-                                Home
+                            Home
                             </button>
                             <button
                                 onClick={() => handleSectionClick('services')}
@@ -109,7 +109,7 @@ function Navbar() {
                                     activeSection === 'services' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
                                 }`}
                             >
-                                Services
+                            Services
                             </button>
                             <button
                                 onClick={() => handleSectionClick('gallery')}
@@ -117,7 +117,7 @@ function Navbar() {
                                     activeSection === 'gallery' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
                                 }`}
                             >
-                                Gallery
+                            Gallery
                             </button>
                             <button
                                 onClick={() => handleSectionClick('contact')}
@@ -125,7 +125,7 @@ function Navbar() {
                                     activeSection === 'contact' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
                                 }`}
                             >
-                                Contact
+                            Contact
                             </button>
                         </div>
                     </nav>

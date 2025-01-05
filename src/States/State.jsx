@@ -8,7 +8,7 @@ export const ScrollProvider = ({ children }) => {
 
     const scrollToSection = (key) => {
         sectionRef.current[key]?.scrollIntoView({ behavior: 'smooth'});
-        console.log(sectionRef);
+        // console.log(sectionRef);
         console.log("Hitting Scroll");
     };
 
