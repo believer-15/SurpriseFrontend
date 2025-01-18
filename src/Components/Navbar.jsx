@@ -18,7 +18,7 @@ function Navbar() {
     };
 
     return (
-        <nav className="top-0 left-0 w-full z-[1000] sticky bg-[#8bb5c9]">
+        <nav className="top-0 left-0 w-full z-[1000] fixed bg-[#8bb5c9]">
             <div className="sm:mx-auto sm:max-w-6xl flex flex-wrap items-center justify-between h-18 text-[#161d15] font-merriweather">
                 <div className="block sm:hidden ml-6">
                     <button onClick={() => setIsOpen(!isOpen)}>
