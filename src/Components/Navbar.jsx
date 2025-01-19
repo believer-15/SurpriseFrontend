@@ -33,7 +33,7 @@ function Navbar() {
                         </svg>
                     </button>    
                 </div>
-                <div className="flex items-center justify-center sm:mr-0 mr-[4.375rem]">
+                <div className="flex items-center justify-center sm:mr-0 mr-[4.375rem]" role="button" onClick={() => handleSectionClick('home')}>
                     <img src={Logo} alt="Logo" className="w-21 h-20" />
                     <p className="text-l font-bold tracking-[0.25em]">SURPRISE</p>
                 </div>

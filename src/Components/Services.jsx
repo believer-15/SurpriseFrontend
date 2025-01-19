@@ -1,4 +1,4 @@
-import skincare  from '../assets/skinCare.png';
+import skincare  from '../assets/skinCare.jpg';
 import bodycare from '../assets/bodyCare.jpg';
 import haircare from '../assets/hairCare.jpg';
 import makeup from '../assets/makeup.jpg';
