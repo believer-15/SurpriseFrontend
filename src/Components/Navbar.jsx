@@ -40,7 +40,7 @@ function Navbar() {
     }, []);
 
     return (
-        <nav className="top-0 left-0 w-full z-[1000] fixed bg-[#8bb5c9]">
+        <nav className="top-0 left-0 w-full sm:z-[1000] fixed bg-[#8bb5c9]">
             <div className="sm:mx-auto sm:max-w-6xl flex flex-wrap items-center justify-between h-18 text-[#161d15] font-merriweather">
                 <div className="block sm:hidden ml-6">
                     <button onClick={() => setIsOpen(!isOpen)}>
@@ -78,57 +78,14 @@ function Navbar() {
                 </div>
 
                 {/* Dropdown menu for small screens */}
-                {/* {isOpen && (
-                    <>
-                        <div
-                            className="fixed inset-0 bg-black opacity-50 z-10"
-                            onClick={closeSidebar} // Close sidebar when clicking overlay
-                        >
-                        </div>
-                        <nav className='absolute w-[100%] top-0 left-0 z-10 bg-white'>
-                            <div className='flex justify-center'>
-                                <img src={Logo} alt="Logo" className="w-21 h-20" />
-                            </div>
-                            <div className='flex flex-col items-center gap-6 font-normal text-[20px] p-7 tracking-[0.08em]'>
-                                <button
-                                    onClick={() => handleSectionClick('home')}
-                                    className={`${activeSection === 'home' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
-                                        }`}
-                                >
-                                    Home
-                                </button>
-                                <button
-                                    onClick={() => handleSectionClick('services')}
-                                    className={`${activeSection === 'services' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
-                                        }`}
-                                >
-                                    Services
-                                </button>
-                                <button
-                                    onClick={() => handleSectionClick('gallery')}
-                                    className={`${activeSection === 'gallery' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
-                                        }`}
-                                >
-                                    Gallery
-                                </button>
-                                <button
-                                    onClick={() => handleSectionClick('contact')}
-                                    className={`${activeSection === 'contact' ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]' : ''
-                                        }`}
-                                >
-                                    Contact
-                                </button>
-                            </div>
-                        </nav>
-                    </>
-                )} */}
 
                 {isOpen && (
                     <>
                         <div
                             className="fixed inset-0 bg-black opacity-50 z-10"
                             onClick={closeSidebar} // Close sidebar when clicking overlay
-                        ></div>
+                        >
+                        </div>
                         <nav className="absolute w-[100%] top-0 left-0 z-10 bg-white">
                             <div className="flex justify-center">
                                 <img src={Logo} alt="Logo" className="w-21 h-20" />
