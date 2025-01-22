@@ -41,7 +41,7 @@ function Navbar() {
 
     return (
         <nav className="top-0 left-0 w-full sm:z-[1000] fixed bg-[#8bb5c9]">
-            <div className="sm:mx-auto sm:max-w-6xl flex flex-wrap items-center justify-between h-18 text-[#161d15] font-merriweather">
+            <div className="sm:mx-auto sm:max-w-6xl flex items-center justify-between h-18 text-[#161d15] font-merriweather">
                 <div className="block sm:hidden ml-6">
                     <button onClick={() => setIsOpen(!isOpen)}>
                         <svg
@@ -55,7 +55,7 @@ function Navbar() {
                         </svg>
                     </button>
                 </div>
-                <div className="flex items-center justify-center sm:mr-0 mr-[4.375rem]" role="button" onClick={() => handleSectionClick('home')}>
+                <div className="flex items-center sm:mr-0 mr-[4.375rem]" role="button" onClick={() => handleSectionClick('home')}>
                     <img src={Logo} alt="Logo" className="w-21 h-20" />
                     <p className="text-l font-bold tracking-[0.25em]">SURPRISE</p>
                 </div>
