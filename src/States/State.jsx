@@ -16,9 +16,8 @@ export const ScrollProvider = ({ children }) => {
 
     const submitFormData = async (formData) => {
         try {
-          console.log(formData.full_name);
           const response = await axiosInstance.post("/addCustomer", formData);
-          console.log(response.data);
+          // console.log(response.data);
           return response.data;
         } catch (error) {
           console.error("Error submitting form data:", error);

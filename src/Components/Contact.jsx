@@ -22,6 +22,10 @@ function Contact() {
         service_type: ''
     });
 
+    const visibleButton = () => {
+        return formState.full_name.trim() !== '' && formState.mobile_number.trim() !== '';
+    }
+
     // Don't Delete handleSelectChange
 
     function handleSelectChange(e){
@@ -44,20 +48,52 @@ function Contact() {
         }));
     }
 
+    const validateField = () => {
+        let newErrors = {};
+
+        // Validate name field
+        if (!formState.full_name.trim()) {
+            newErrors.full_name = `${crossIcon} Name is required!`;
+        } else if (formState.full_name.length < 3) {
+            newErrors.full_name = "Enter Valid Name";
+        }
+  
+        // Validate email (optional but must be valid if provided)
+        if (formState.email_id.trim()) { // Only validate if not empty
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formState.email_id.trim())) {
+                newErrors.email_id = `${crossIcon} Enter a valid email!`;
+            }
+        }
+
+        // Validate mobile number (added trim to handle spaces)
+        const mobile = formState.mobile_number.replace(/\D/g, ''); // Remove non-digits
+        if (!mobile) {
+            newErrors.mobile_number = `${crossIcon} Contact is required!`;
+        } else if (!/^[6-9]\d{9}$/.test(mobile)) {
+            newErrors.mobile_number = `${crossIcon} Enter Valid Contact Number!`;
+        }
+  
+        setErrors(newErrors);
+  
+        // Return true if there are no errors
+        return Object.keys(newErrors).length === 0;
+    };
+
     async function handleFormSubmit(e){
         e.preventDefault();
-        console.log(formState);
+        // console.log(formState);
 
         if (validateField()) {
-            console.log("Not submitted successfully!");
+            // console.log("Not submitted successfully!");
             setFormState({ full_name: "", email_id: "", mobile_number: "", service_type: "" }); // Clear the form
             setErrors({}); // Clear errors
         }
         try {
             const response = await submitFormData(formState);
-            console.log(response.data);
+            // console.log(response.data);
             if (response.status >= 200 && response.status < 300) {
-                console.log("I am inside if");
+                // console.log("I am inside if");
                 setHtmlContent(true);
             }
 
@@ -70,34 +106,6 @@ function Contact() {
             console.error("Error submitting form data:", error);
         }
     }
-
-    const validateField = () => {
-        let newErrors = [];
-
-        // Validate name field
-        if (!formState.full_name.trim()) {
-            newErrors.full_name = `${crossIcon} Name is required!`;
-        } else if (formState.full_name.length < 3) {
-            newErrors.full_name = "Enter Valid Name";
-        }
-  
-        // Validate email field
-        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email_id.trim())) {
-            newErrors.email_id = `${crossIcon} Enter a valid email!`;
-        }
-
-        if(!formState.mobile_number.trim()) {
-            newErrors.mobile_number = `${crossIcon} Contact is required!`;
-            console.log("Hello from Validate Field!")
-        } else if (!/^[6-9]\d{9}$/.test(formState.mobile_number)) {
-            newErrors.mobile_number = `${crossIcon} Enter Valid Contact Number!`
-        }
-  
-        setErrors(newErrors);
-  
-        // Return true if there are no errors
-        return Object.keys(newErrors).length === 0;
-    };
 
     return(
         <>
@@ -113,7 +121,7 @@ function Contact() {
                     <div className="flex flex-col-reverse space-y-0 sm:flex-row sm:items-center sm:justify-around bg-contactColor p-6">
                             <div className="overflow-hidden mt-5 sm:mt-0 rounded-xl">
                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14229.535369411502!2d83.69810923838192!3d26.92304332625161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3993fbc5932982af%3A0x73bc87cb7af97c88!2sNew%20Surprise%20Beauty%20Parlour!5e0!3m2!1sen!2sin!4v1730725199233!5m2!1sen!2sin" 
-                                    width="450" // for bigger screen 450 // for smaller 380
+                                    width="380" // for bigger screen 450 // for smaller 380
                                     height="250" // for bigger screen 250 // for smaller 250
                                     allowFullScreen 
                                     loading="lazy" 
@@ -198,7 +206,8 @@ function Contact() {
                                     type="button" 
                                     name="submit"
                                     onClick={handleFormSubmit}
-                                    className="tracking-[0.25em] text-center bg-[#C7B1B1] w-[13.75rem] p-[0.625rem]">
+                                    disabled={!visibleButton()}
+                                    className="disabled:bg-gray-300 tracking-[0.25em] text-center bg-[#C7B1B1] w-[13.75rem] p-[0.625rem]">
                                     SUBMIT
                             </button>
                         </div>
