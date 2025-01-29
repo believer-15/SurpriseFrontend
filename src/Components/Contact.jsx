@@ -27,7 +27,7 @@ function Contact() {
     }
 
     // Don't Delete handleSelectChange
-
+    // eslint-disable-next-line no-unused-vars
     function handleSelectChange(e){
         setFormState({
             ...formState,
