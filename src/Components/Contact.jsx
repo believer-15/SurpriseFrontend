@@ -130,7 +130,7 @@ function Contact() {
                                 </iframe>
                             </div>
                         {htmlContent ? (
-                            <div className="flex flex-col items-center justify-center bg-[#ac2c2c] rounded-xl p-12 font-merriweather" id="successMessage">
+                            <div className="flex flex-col items-center justify-center bg-[#4bb159] rounded-xl p-12 font-merriweather" id="successMessage">
                                 <img src={sampleGif} alt="Sample GIF" className="w-[6.25rem]" />
                                 <p className='text-base text-center'>Thank you! <br />We'll reach out to you shortly.</p>
                             </div>
@@ -155,9 +155,6 @@ function Contact() {
                                             {errors.full_name}
                                         </span>
                                     )}
-                                    {/* {errors.name && (
-                                        <span className="text-xs text-red-700">&#x274C{errors.name}</span>
-                                    )} */}
                                 <br/>
                                 <input 
                                     type="email" 
