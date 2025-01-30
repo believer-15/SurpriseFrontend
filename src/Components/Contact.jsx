@@ -91,7 +91,7 @@ function Contact() {
         }
         try {
             const response = await submitFormData(formState);
-            // console.log(response.data);
+            console.log(response.status);
             if (response.status >= 200 && response.status < 300) {
                 // console.log("I am inside if");
                 setHtmlContent(true);
