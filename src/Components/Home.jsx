@@ -29,7 +29,8 @@ function Home() {
                         We Offer A Wide Range Of Services To Make You Look And Feel Your Best.
                         </p>
                         <button 
-                            className='sm:w-[8.75rem] sm:h-[2.8125rem] w-[8rem] h-[3rem] mx-auto sm:mx-0  rounded-3xl font-bold tracking-[0.0625rem] hover:border-2' 
+                            className='sm:w-[8.75rem] sm:h-[2.8125rem] w-[8rem] h-[3rem] mx-auto sm:mx-0 
+                            rounded-3xl font-bold tracking-[0.0625rem] text-white bg-black hover:bg-sky-800 animate-pulse' 
                             type='button' 
                             disabled={false}
                         >
