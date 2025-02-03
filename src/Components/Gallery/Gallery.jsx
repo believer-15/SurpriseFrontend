@@ -17,15 +17,16 @@ function Gallery() {
 
   return (
     <>
-    <section className='scroll-mt-[6rem] font-merriweather bg-[#8bb5c9]' 
+    <section className='scroll-mt-[6rem] font-merriweather bg-[#8bb5c9] overflow-hidden' 
       ref={(el) => (sectionRef.current['gallery'] = el)}
       id='gallery'
     >
       <div className='flex flex-col items-center justify-around sm:pb-12'>
-        <div className='mt-5'>
+        <div className='mt-5' data-aos="fade-up">
             <h1 className="text-lg sm:text-xl font-bold tracking-[0.15em]">GALLERY</h1>
         </div>
         <Swiper
+        data-aos="fade-up"
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}

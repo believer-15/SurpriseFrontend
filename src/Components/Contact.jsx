@@ -113,16 +113,15 @@ function Contact() {
             id="contact"
             ref={(el) => (sectionRef.current['contact'] = el)}
             >
-                <div className="sm:max-w-6xl flex flex-col sm:justify-center mx-auto">
-                    <div className="flex items-center justify-center bg-contactColor">
+                <div className="sm:max-w-6xl flex flex-col sm:justify-center mx-auto overflow-hidden">
+                    <div className="flex items-center justify-center bg-contactColor" data-aos="fade-up">
                         <h1 className="text-xl font-bold tracking-[0.15em] bg-contactColor mt-5">CONTACT US</h1>
                     </div>
 
                     <div className="flex flex-col-reverse space-y-0 sm:flex-row sm:items-center sm:justify-around bg-contactColor p-6">
-                            <div className="overflow-hidden mt-5 sm:mt-0 rounded-xl">
+                            <div className="overflow-hidden mt-5 sm:mt-0 rounded-xl" data-aos="fade-up">
                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14229.535369411502!2d83.69810923838192!3d26.92304332625161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3993fbc5932982af%3A0x73bc87cb7af97c88!2sNew%20Surprise%20Beauty%20Parlour!5e0!3m2!1sen!2sin!4v1730725199233!5m2!1sen!2sin" 
-                                    width="380" // for bigger screen 450 // for smaller 380
-                                    height="250" // for bigger screen 250 // for smaller 250
+                                    className="w-[380px] h-[250px] sm:w-[450px] sm:h-[250px]"
                                     allowFullScreen 
                                     loading="lazy" 
                                     referrerPolicy="no-referrer-when-downgrade"
@@ -136,7 +135,7 @@ function Contact() {
                             </div>
                         ): (
                             <>
-                        <div className="flex flex-col items-center justify-center gap-[30px] bg-[#D9D9D9] rounded-xl sm:pl-12 sm:pr-12 pt-3 pb-3 font-merriweather">
+                        <div className="flex flex-col items-center justify-center gap-[30px] bg-[#D9D9D9] rounded-xl sm:pl-12 sm:pr-12 pt-3 pb-3 font-merriweather" data-aos="fade-up">
                             <div className="">
                                 <p className="bg-[#D9D9D9]">BOOK YOUR APPOINTMENT</p>
                             </div>
