@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { useScroll, ScrollContext } from "../States/State";
 import sampleGif from "../assets/Animation.gif";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Contact() {
 
@@ -15,6 +16,9 @@ function Contact() {
 
     const [errors, setErrors] = useState({ full_name: [], mobile_number: [] });
 
+     
+    const [isCaptchaCompleted, setIsCaptchaCompleted] = useState(false);
+
     const [formState, setFormState] = useState({
         full_name: '',
         email_id: '',
@@ -22,8 +26,12 @@ function Contact() {
         service_type: ''
     });
 
+    // Reset Captcha
+
+    const captchaRef = useRef();
+
     const visibleButton = () => {
-        return formState.full_name.trim() !== '' && formState.mobile_number.trim() !== '';
+        return formState.full_name.trim() !== '' && formState.mobile_number.trim() !== '' && isCaptchaCompleted;
     }
 
     // Don't Delete handleSelectChange
@@ -83,28 +91,33 @@ function Contact() {
     async function handleFormSubmit(e){
         e.preventDefault();
         // console.log(formState);
-
-        if (validateField()) {
-            // console.log("Not submitted successfully!");
-            setFormState({ full_name: "", email_id: "", mobile_number: "", service_type: "" }); // Clear the form
-            setErrors({}); // Clear errors
-        }
         try {
-            const response = await submitFormData(formState);
-            console.log(response.status);
-            if (response.status >= 200 && response.status < 300) {
-                // console.log("I am inside if");
-                setHtmlContent(true);
+            if (validateField()) {
+                const response = await submitFormData(formState);
+                console.log(response.status);
+                if (response.status >= 200 && response.status < 300) {
+                    // console.log("I am inside if");
+                    setHtmlContent(true);
+                    // setFormState({ full_name: "", email_id: "", mobile_number: "", service_type: "" });
+                }
+                setErrors({}); // Clear errors
             }
 
             // Revert the state back after 3 seconds (or any desired duration)
             setTimeout(() => {
                 setHtmlContent(false);
                 setFormState({ full_name: "", mobile_number: "", email_id: "", service_type: "" }); // Reset form
+                captchaRef.current.reset(); // reset captcha
             }, 3000);
         } catch (error) {
             console.error("Error submitting form data:", error);
+            alert("Error submitting the form. Please try again later.");
         }
+    }
+
+    function onChange(value) {
+        console.log("Captcha value:", value);
+        setIsCaptchaCompleted(true);
     }
 
     return(
@@ -139,7 +152,7 @@ function Contact() {
                             <div className="">
                                 <p className="bg-[#D9D9D9]">BOOK YOUR APPOINTMENT</p>
                             </div>
-                            <div className="flex flex-col items-start bg-[#D9D9D9]" >
+                            <div className="flex flex-col items-start bg-[#D9D9D9] sm:w-full" >
                                 <input 
                                     type="text" 
                                     name="full_name"
@@ -147,7 +160,7 @@ function Contact() {
                                     value={formState.full_name}
                                     onChange={handleUserInput}
                                     placeholder="Name" 
-                                    className="bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
+                                    className="sm:w-full bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
                                     {/* Display Error for Name */}
                                     {errors.full_name && (
                                         <span className="text-xs text-red-700 flex items-center">
@@ -161,7 +174,7 @@ function Contact() {
                                     value={formState.email_id}
                                     onChange={handleUserInput} 
                                     placeholder="Email" 
-                                    className="bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
+                                    className="sm:w-full bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
                                     {/* Display Error for Email */}
                                     {errors.email_id && (
                                         <span className="text-xs text-red-700">
@@ -176,7 +189,7 @@ function Contact() {
                                     value={formState.mobile_number}
                                     onChange={handleUserInput}
                                     placeholder="Mobile No." 
-                                    className="bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
+                                    className="sm:w-full bg-[#D9D9D9] border-b-[0.1rem] placeholder-black border-black focus:outline-none" />
                                     {errors.mobile_number && (
                                         <span className="text-xs text-red-700">
                                             {errors.mobile_number}
@@ -197,16 +210,24 @@ function Contact() {
                                     </select>
                                 </div>
                             </div>
-                            <button 
-                                    id="submitBtn"
-                                    type="button" 
-                                    name="submit"
-                                    onClick={handleFormSubmit}
-                                    disabled={!visibleButton()}
-                                    className="disabled:bg-gray-300 tracking-[0.25em] text-center bg-[#C7B1B1] w-[13.75rem] p-[0.625rem]">
-                                    SUBMIT
-                            </button>
-                        </div>
+                                <ReCAPTCHA
+                                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                                    onChange={onChange}
+                                    size="normal"
+                                    ref={captchaRef}
+                                />
+                                
+                                    <button 
+                                        id="submitBtn"
+                                        type="button" 
+                                        name="submit"
+                                        onClick={handleFormSubmit}
+                                        disabled={!visibleButton()}
+                                        className="sm:w-full disabled:bg-gray-300 tracking-[0.25em] text-center bg-[#C7B1B1] w-[13.75rem] p-[0.625rem]"
+                                    >
+                                        SUBMIT
+                                    </button>
+                            </div>
                             </>
                         )}
                     </div>
