@@ -31,7 +31,7 @@ function Footer() {
                     </div>
                 </div>
                 <div className="bg-[#000] text-center p-[1.25rem] mb-[1.5625rem]">
-                    <p className="bg-[#000] text-lg">&copy; 2024 Surprise. All Right Reserved</p>
+                    <p className="bg-[#000] text-lg">&copy; 2025 Surprise. All Right Reserved</p>
                 </div>
             </footer>
         </>
