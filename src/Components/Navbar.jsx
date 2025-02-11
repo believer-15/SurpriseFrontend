@@ -36,6 +36,8 @@ function Navbar() {
             const element = document.getElementById(section);
             if (element) {
                 const rect = element.getBoundingClientRect();
+                console.log(rect);
+                console.log(navbarHeight);
                 // Check if element is in view (considering navbar height)
                 if (rect.top <= navbarHeight && rect.bottom >= navbarHeight) {
                     setActiveSection(section);
