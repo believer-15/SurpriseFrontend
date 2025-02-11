@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { useState, useContext, useRef } from "react";
 import { ScrollContext } from "../States/State";
 import ReCAPTCHA from "react-google-recaptcha";
