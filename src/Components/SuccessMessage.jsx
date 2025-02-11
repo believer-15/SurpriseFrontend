@@ -1,4 +1,4 @@
-import sampleGif from '../assets/Animation'
+import sampleGif from '../assets/Animation.gif';
 
 function SuccessMessage(){
 
