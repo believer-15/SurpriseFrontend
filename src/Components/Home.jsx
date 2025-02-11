@@ -2,12 +2,12 @@ import Layout from '../Layout/Layout';
 import Services from '../Components/Services';
 import Gallery from './Gallery/Gallery';
 import Contact from '../Components/Contact';
-import { useScroll } from '../States/State';
 // Cloudinary Imports
 import { Cloudinary } from '@cloudinary/url-gen';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
 import { AdvancedImage } from '@cloudinary/react';
+import { useEffect, useState } from 'react';
 
 function Home() {
     const cld = new Cloudinary({ cloud: { cloudName: import.meta.env.VITE_CLOUDINARY_NAME } });
@@ -18,10 +18,29 @@ function Home() {
         .quality('auto')
         .resize(auto().gravity(autoGravity()).width(368).height(530));
 
-    const { scrollToSection, sectionRef } = useScroll();
+    const [height, setHeight] = useState(0);
+    const [activeSection, setActiveSection] = useState('home');
 
-    const handleBookNow = () => {
-        scrollToSection('contact');
+    useEffect(() => {
+        const btnHeight = document.querySelector('nav');
+        if(btnHeight){
+            setHeight(btnHeight.offsetHeight);
+        }
+    },[])
+
+    function handleBookNow(){
+        const element = document.getElementById('contact')
+        if (element) {
+            // Calculate scroll position with navbar offset
+            // console.log(element);
+            const targetPosition = element.offsetTop - height;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+        setActiveSection(element);
+        console.log(activeSection);
     };
 
     return (
@@ -29,7 +48,6 @@ function Home() {
             {/* Hero Section */}
             <section 
                 className='mt-[5rem] scroll-mt-[6rem] bg-[#8bb5c9] font-merriweather overflow-hidden'
-                ref={(el) => (sectionRef.current['home'] = el)}  
                 id='home'
             >
                 <div className='sm:max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between'>

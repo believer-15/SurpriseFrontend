@@ -1,11 +1,9 @@
-import { useScroll } from "../States/State";
 import { Cloudinary } from '@cloudinary/url-gen';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
 import { AdvancedImage } from '@cloudinary/react';
 
 function Services() {
-  const { sectionRef } = useScroll();
   const cld = new Cloudinary({ cloud: { cloudName: import.meta.env.VITE_CLOUDINARY_NAME } });
 
   const services = [
@@ -27,7 +25,7 @@ function Services() {
     <section 
       className="scroll-mt-[5rem] bg-[#8bb5c9] font-merriweather pb-4 sm:pb-0 pt-4 sm:pt-0 overflow-hidden" 
       id="services" 
-      ref={(el) => (sectionRef.current.services = el)}
+      
     >
       <div className='sm:max-w-6xl mx-auto sm:p-12'>
         <div className="flex items-center justify-center sm:mt-5" data-aos="fade-up">

@@ -1,18 +1,11 @@
-import { createContext, useContext, useRef } from 'react';
+import { createContext, useContext } from 'react';
 import axiosInstance from '../Utils/axiosInstance';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const ScrollContext = createContext();
 
 // eslint-disable-next-line react/prop-types
-export const ScrollProvider = ({ children }) => {
-    const sectionRef = useRef({});
-
-    const scrollToSection = (key) => {
-        sectionRef.current[key]?.scrollIntoView({ behavior: 'smooth'});
-        // console.log(sectionRef);
-        console.log("Hitting Scroll");
-    };  
+export const ScrollProvider = ({ children }) => {  
 
     const submitFormData = async (formData) => {
         try {
@@ -26,7 +19,7 @@ export const ScrollProvider = ({ children }) => {
       };
 
     return (
-        <ScrollContext.Provider value={{sectionRef, scrollToSection, submitFormData}}>
+        <ScrollContext.Provider value={{ submitFormData}}>
             {children}
         </ScrollContext.Provider>
     );

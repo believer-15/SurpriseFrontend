@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useScroll } from '../../States/State';
 import bridal from '../../assets/bridal.png';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -8,12 +7,9 @@ import './styles.css';
 import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
 
 function Gallery() {
-  const { sectionRef } = useScroll();
-
   return (
     <section 
       className='scroll-mt-[6rem] font-merriweather bg-[#8bb5c9] overflow-hidden' 
-      ref={(el) => (sectionRef.current['gallery'] = el)}
       id='gallery'
     >
       <div className='flex flex-col items-center justify-around sm:pb-12'>
