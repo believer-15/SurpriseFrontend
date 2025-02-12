@@ -17,7 +17,7 @@ function Services() {
   const getCloudinaryImage = (publicId) => {
     return cld.image(publicId)
       .format('auto')
-      .quality('auto')
+      .quality('100')
       .resize(auto().gravity(autoGravity()).width(208).height(208));
   };
 

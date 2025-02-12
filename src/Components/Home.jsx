@@ -2,7 +2,6 @@ import Layout from '../Layout/Layout';
 import Services from '../Components/Services';
 import Gallery from './Gallery/Gallery';
 import Contact from '../Components/Contact';
-// Cloudinary Imports
 import { Cloudinary } from '@cloudinary/url-gen';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
@@ -15,7 +14,7 @@ function Home() {
     const heroImage = cld
         .image('heroImg_qattey')
         .format('auto')
-        .quality('auto')
+        .quality(100)
         .resize(auto().gravity(autoGravity()).width(368).height(530));
 
     const [height, setHeight] = useState(0);
@@ -70,7 +69,7 @@ function Home() {
                         </button>
                     </div>
                     <div className='sm:mt-0 mt-8 sm:mx-0 mx-auto' data-aos="fade-up">
-                        <AdvancedImage cldImg={heroImage} />
+                        <AdvancedImage cldImg={heroImage} alt="girl_image" />
                     </div>
                 </div>
             </section>

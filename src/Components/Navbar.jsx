@@ -1,7 +1,19 @@
 import { useState, useEffect } from 'react';
-import Logo from '../assets/Logo.png';
+import { Cloudinary } from '@cloudinary/url-gen';
+import { auto } from '@cloudinary/url-gen/actions/resize';
+import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
+import { AdvancedImage } from '@cloudinary/react';
 
 function Navbar() {
+    const cld = new Cloudinary({ cloud: { cloudName: import.meta.env.VITE_CLOUDINARY_NAME } });
+    
+    const heroImage = cld
+        .image('Logo_asukq3')
+        .format('auto')
+        .quality(100)
+        .resize(auto().gravity(autoGravity()));
+
+
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const [navbarHeight, setNavbarHeight] = useState(0);
@@ -36,8 +48,8 @@ function Navbar() {
             const element = document.getElementById(section);
             if (element) {
                 const rect = element.getBoundingClientRect();
-                console.log(rect);
-                console.log(navbarHeight);
+                // console.log(rect);
+                // console.log(navbarHeight);
                 // Check if element is in view (considering navbar height)
                 if (rect.top <= navbarHeight && rect.bottom >= navbarHeight) {
                     setActiveSection(section);
@@ -65,7 +77,7 @@ function Navbar() {
 
                 {/* Logo */}
                 <div className="flex items-center sm:mr-0 mr-[4.375rem]" onClick={() => handleSectionClick('home')}>
-                    <img src={Logo} alt="Logo" className="w-21 h-20" />
+                    <AdvancedImage cldImg={heroImage} alt="Logo" className="w-21 h-20"/>
                     <p className="text-l font-bold tracking-[0.25em]">SURPRISE</p>
                 </div>
 
@@ -94,7 +106,7 @@ function Navbar() {
                         <div className="fixed inset-0 bg-black opacity-50 z-10" onClick={() => setIsOpen(false)} />
                         <nav className="fixed w-full top-0 left-0 z-20 bg-white">
                             <div className="flex justify-center">
-                                <img src={Logo} alt="Logo" className="w-21 h-20" />
+                                <AdvancedImage cldImg={heroImage} alt="Logo" className="w-21 h-20"/>
                             </div>
                             <div className="flex flex-col items-center gap-6 font-normal text-[20px] p-7 tracking-[0.08em]">
                                 {['home', 'services', 'gallery', 'contact'].map((section) => (
