@@ -19,7 +19,7 @@ export const ScrollProvider = ({ children }) => {
       };
 
     return (
-        <ScrollContext.Provider value={{ submitFormData}}>
+        <ScrollContext.Provider value={{ submitFormData }}>
             {children}
         </ScrollContext.Provider>
     );

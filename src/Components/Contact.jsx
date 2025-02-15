@@ -3,6 +3,7 @@ import { ScrollContext } from "../States/State";
 import ReCAPTCHA from "react-google-recaptcha";
 import SuccessMessage from "./SuccessMessage";
 import FormField from "./FormField";
+import DOMPurify from 'dompurify';
 
 function Contact() {
 
@@ -33,13 +34,13 @@ function Contact() {
 
     const validateForm = () => {
         const newErrors = {};
-        const crossIcon = '❌';
-    
+        const crossIcon = '❌';    
         if (!formState.full_name.trim()) {
-          newErrors.full_name = `${crossIcon} Name is required`;
-        } else if (formState.full_name.length < 3) {
-          newErrors.full_name = `${crossIcon}Invalid name`;
+            newErrors.full_name = `${crossIcon} Name is required`;
+        } else if (formState.full_name.length < 3 || !/^[A-Za-z]+([ '-][A-Za-z]+)*$/.test(formState.full_name.trim())) {
+            newErrors.full_name = `${crossIcon} Invalid name`;
         }
+        
     
         if (formState.email_id.trim()) {
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -65,13 +66,21 @@ function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (!validateForm()) return;
-    
+
+        // Sanitize each input separately
+        const sanitizedData = {
+            full_name: DOMPurify.sanitize(formState.full_name.trim()),
+            mobile_number: DOMPurify.sanitize(formState.mobile_number.trim()),
+            email_id: DOMPurify.sanitize(formState.email_id.trim()),
+            service_type: DOMPurify.sanitize(formState.service_type.trim()),
+        };    
         try {
-          await submitFormData(formState);
+          await submitFormData(sanitizedData);
+          captchaRef.current.reset();
           setIsSubmitted(true);
           resetForm();
-          captchaRef.current.reset();
         } catch (error) {
           console.error("Submission error:", error);
           alert("Error submitting form. Please try again.");
@@ -90,7 +99,7 @@ function Contact() {
     }
 
     const visibleButton = () => {
-        return formState.full_name.trim() !== '' && formState.mobile_number.trim() !== '' && isCaptchaComplete;
+        return formState.full_name !== '' && formState.mobile_number !== '' && isCaptchaComplete;
     }
 
     return(
