@@ -18,28 +18,23 @@ function Home() {
         .resize(auto().gravity(autoGravity()).width(368).height(530));
 
     const [height, setHeight] = useState(0);
-    const [activeSection, setActiveSection] = useState('home');
 
     useEffect(() => {
         const btnHeight = document.querySelector('nav');
         if(btnHeight){
             setHeight(btnHeight.offsetHeight);
         }
-    },[])
+    },[]);
 
     function handleBookNow(){
         const element = document.getElementById('contact')
         if (element) {
-            // Calculate scroll position with navbar offset
-            // console.log(element);
             const targetPosition = element.offsetTop - height;
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
             });
         }
-        setActiveSection(element);
-        console.log(activeSection);
     };
 
     return (
@@ -49,27 +44,28 @@ function Home() {
                 className='mt-[5rem] scroll-mt-[6rem] bg-[#8bb5c9] font-merriweather overflow-hidden'
                 id='home'
             >
-                <div className='sm:max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between'>
-                    <div className='flex flex-col sm:gap-3 gap-4' data-aos="fade-up">
-                        <p className='flex flex-col gap-4 text-center sm:text-left sm:gap-2 text-4xl sm:text-4xl font-bold tracking-[0.3125rem]'>
+                <div className='px-6 md:px-12 lg:px-8 mx-auto max-w-6xl flex flex-col md:flex-row md:items-center md:justify-between md:py-12'>
+                    <div className='flex flex-col md:gap-6 gap-4 md:flex-1 md:pr-8 lg:pr-12' data-aos="fade-up">
+                        <p className='flex flex-col gap-4 text-center md:text-left md:gap-2 text-4xl md:text-5xl font-bold tracking-[0.3125rem]'>
                             <span>FLAWLESS LOOK</span> 
                             <span>FOR</span> 
                             <span>FLAWLESS MOMENT</span>
                         </p>
-                        <p className='sm:w-[29.6875rem] text-center sm:text-left tracking-[0.125rem]'>
+                        <p className='md:w-[29.6875rem] text-center md:text-left tracking-[0.125rem] md:text-lg'>
                             We Offer A Wide Range Of Services To Make You Look And Feel Your Best.
                         </p>
                         <button 
-                            className='sm:w-[8.75rem] sm:h-[2.8125rem] w-[8rem] h-[3rem] mx-auto sm:mx-0 
-                            rounded-3xl font-bold tracking-[0.0625rem] text-white bg-black hover:bg-sky-800 animate-pulse' 
+                            className='md:w-[8.75rem] md:h-[2.8125rem] w-[8rem] h-[3rem] mx-auto md:mx-0 
+                            rounded-3xl font-bold tracking-[0.0625rem] text-white bg-black hover:bg-sky-800 animate-pulse
+                            transition-colors duration-300' 
                             type='button' 
                             onClick={handleBookNow}
                         >
                             Book Now
                         </button>
                     </div>
-                    <div className='sm:mt-0 mt-8 sm:mx-0 mx-auto' data-aos="fade-up">
-                        <AdvancedImage cldImg={heroImage} alt="girl_image" />
+                    <div className='md:mt-0 mt-8 md:mx-0 mx-auto md:flex-1 md:flex md:justify-end' data-aos="fade-up">
+                        <AdvancedImage cldImg={heroImage} alt="girl_image" className="md:max-w-[90%] lg:max-w-[85%] object-cover" />
                     </div>
                 </div>
             </section>

@@ -13,7 +13,6 @@ function Navbar() {
         .quality(100)
         .resize(auto().gravity(autoGravity()));
 
-
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const [navbarHeight, setNavbarHeight] = useState(0);
@@ -26,12 +25,19 @@ function Navbar() {
         }
     }, []);
 
+    const handleLogoClick = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        setActiveSection('home');
+    };
+
     const handleSectionClick = (section) => {
         setActiveSection(section);
         const element = document.getElementById(section);
         if (element) {
             // Calculate scroll position with navbar offset
-            // console.log(element);
             const targetPosition = element.offsetTop - navbarHeight;
             window.scrollTo({
                 top: targetPosition,
@@ -48,9 +54,6 @@ function Navbar() {
             const element = document.getElementById(section);
             if (element) {
                 const rect = element.getBoundingClientRect();
-                // console.log(rect);
-                // console.log(navbarHeight);
-                // Check if element is in view (considering navbar height)
                 if (rect.top <= navbarHeight && rect.bottom >= navbarHeight) {
                     setActiveSection(section);
                 }
@@ -61,13 +64,13 @@ function Navbar() {
     useEffect(() => {
         window.addEventListener('scroll', checkActiveSection);
         return () => window.removeEventListener('scroll', checkActiveSection);
-    }, [navbarHeight]); // Re-run effect when navbar height changes
+    }, [navbarHeight]);
 
     return (
         <nav className="top-0 left-0 w-full z-[1000] fixed bg-[#8bb5c9]">
-            <div className="sm:mx-auto sm:max-w-6xl flex items-center justify-between h-18 text-[#161d15] font-merriweather">
+            <div className="px-6 md:px-12 lg:px-8 mx-auto max-w-6xl flex items-center justify-between h-18 text-[#161d15] font-merriweather relative">
                 {/* Mobile Menu Button */}
-                <div className="block sm:hidden ml-6">
+                <div className="block md:hidden absolute left-6 z-10">
                     <button onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
                         <svg className="w-8 h-8 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -75,23 +78,23 @@ function Navbar() {
                     </button>
                 </div>
 
-                {/* Logo */}
-                <div className="flex items-center sm:mr-0 mr-[4.375rem]" onClick={() => handleSectionClick('home')}>
+                {/* Logo - Centered on mobile */}
+                <div className="flex items-center cursor-pointer mx-auto md:mx-0" onClick={handleLogoClick}>
                     <AdvancedImage cldImg={heroImage} alt="Logo" className="w-21 h-20"/>
                     <p className="text-l font-bold tracking-[0.25em]">SURPRISE</p>
                 </div>
 
                 {/* Desktop Navigation */}
                 <div className="hidden md:block">
-                    <ul className="flex gap-20 font-normal text-m tracking-[0.1875em]">
+                    <ul className="flex md:gap-12 lg:gap-16 font-normal text-m tracking-[0.1875em]">
                         {['home', 'services', 'gallery', 'contact'].map((section) => (
                             <li key={section}>
                                 <button
                                     onClick={() => handleSectionClick(section)}
                                     className={`${activeSection === section
                                         ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]'
-                                        : ''
-                                        }`}
+                                        : 'hover:text-gray-700'
+                                    }`}
                                 >
                                     {section.charAt(0).toUpperCase() + section.slice(1)}
                                 </button>
@@ -103,22 +106,35 @@ function Navbar() {
                 {/* Mobile Navigation */}
                 {isOpen && (
                     <>
-                        <div className="fixed inset-0 bg-black opacity-50 z-10" onClick={() => setIsOpen(false)} />
-                        <nav className="fixed w-full top-0 left-0 z-20 bg-white">
-                            <div className="flex justify-center">
+                        <div 
+                            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-10 transition-all duration-300 ease-in-out" 
+                            onClick={() => setIsOpen(false)} 
+                        />
+                        <nav className="fixed w-full top-0 left-0 z-20 bg-gradient-to-b from-[#8bb5c9] to-white shadow-lg transform transition-all duration-300 ease-in-out">
+                            <div 
+                                className="flex justify-center pt-6 pb-4 bg-[#8bb5c9]/90 cursor-pointer transition-all duration-300 hover:bg-[#8bb5c9]" 
+                                onClick={() => {
+                                    handleLogoClick();
+                                    setIsOpen(false);
+                                }}
+                            >
                                 <AdvancedImage cldImg={heroImage} alt="Logo" className="w-21 h-20"/>
                             </div>
-                            <div className="flex flex-col items-center gap-6 font-normal text-[20px] p-7 tracking-[0.08em]">
+                            <div className="flex flex-col items-center gap-8 font-normal text-[20px] py-8 px-7 tracking-[0.08em]">
                                 {['home', 'services', 'gallery', 'contact'].map((section) => (
                                     <button
                                         key={section}
                                         onClick={() => handleSectionClick(section)}
-                                        className={`${activeSection === section
-                                            ? 'font-bold text-[#000000] border-b-[1px] border-[#000000]'
-                                            : ''
-                                            }`}
+                                        className={`relative w-full text-center py-2 transition-all duration-300 ease-in-out ${
+                                            activeSection === section
+                                                ? 'font-bold text-[#000000] bg-[#8bb5c9]/20 rounded-lg'
+                                                : 'text-gray-700 hover:bg-[#8bb5c9]/10 rounded-lg'
+                                        }`}
                                     >
                                         {section.charAt(0).toUpperCase() + section.slice(1)}
+                                        {activeSection === section && (
+                                            <span className="absolute bottom-0 left-1/2 w-16 h-0.5 bg-[#8bb5c9] transform -translate-x-1/2 transition-all duration-300 ease-in-out" />
+                                        )}
                                     </button>
                                 ))}
                             </div>
